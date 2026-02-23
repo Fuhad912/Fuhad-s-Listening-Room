@@ -3,57 +3,128 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#0b0d0f" />
-    <title>Spotify Connected | Fuhad's Listening Room</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Space+Grotesk:wght@400;500;700&display=swap"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="styles.css" />
+    <meta name="theme-color" content="#121826" />
+    <meta name="description" content="Spotify taste dashboard for Fuhad's Listening Room." />
+    <title>Dashboard | Fuhad's Listening Room</title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/js/ui.js" defer></script>
+    <script src="/js/app.js" defer></script>
   </head>
-  <body>
-    <div class="ambient ambient-a" aria-hidden="true"></div>
-    <div class="ambient ambient-b" aria-hidden="true"></div>
-    <div class="grain" aria-hidden="true"></div>
+  <body class="dashboard-page">
+    <div class="cosmos-bg" aria-hidden="true">
+      <span class="orb orb-a"></span>
+      <span class="orb orb-b"></span>
+      <span class="orb orb-c"></span>
+      <span class="stars"></span>
+    </div>
 
-    <header class="site-header">
-      <a class="brand" href="/index.html" aria-label="Fuhad's Listening Room home">
-        <span class="brand-mark" aria-hidden="true"></span>
-        <span class="brand-text">
-          <span class="brand-title">Fuhad's Listening Room</span>
-          <span class="brand-subtitle">Spotify authorization complete</span>
-        </span>
-      </a>
-      <div class="header-actions">
-        <a class="button button-ghost" href="/index.html">Back to Room</a>
-        <a class="button button-accent" href="/api/logout">Logout</a>
-      </div>
-    </header>
+    <div id="toast-root" class="toast-root" aria-live="polite" aria-atomic="true"></div>
 
-    <main class="page-shell">
-      <section class="panel">
-        <div class="panel-header">
-          <div>
-            <p class="eyebrow">Connected</p>
-            <h2>Spotify account authorization succeeded</h2>
-          </div>
+    <div class="dashboard-shell">
+      <header class="topbar">
+        <div class="brand-block">
+          <p class="kicker">Spotify Dashboard</p>
+          <h1>Fuhad's Listening Room</h1>
         </div>
-        <p class="hero-description">
-          Your Spotify OAuth tokens are stored in secure HTTP-only cookies on this domain. This page
-          is the post-login landing target for the Authorization Code Flow.
-        </p>
-        <div class="chip-row" style="margin-top:0.9rem">
-          <span class="pill">Authorization Code Flow</span>
-          <span class="pill">HTTP-only Cookies</span>
-          <span class="pill">Vercel Functions</span>
+        <div class="topbar-actions">
+          <a class="btn btn-secondary" href="/index.html">Home</a>
+          <a class="btn btn-primary" href="/api/logout">Logout</a>
         </div>
-        <div class="chip-row" style="margin-top:1rem">
-          <a class="button button-accent" href="/index.html">Open Listening Room</a>
-          <a class="button button-ghost" href="/api/logout">Sign out</a>
+      </header>
+
+      <section class="panel tabs-panel" aria-label="Time range selector">
+        <div class="tabs" role="tablist" aria-label="Top listening time range">
+          <button class="tab is-active" type="button" role="tab" aria-selected="true" data-range="short_term">
+            Last 4 weeks
+          </button>
+          <button class="tab" type="button" role="tab" aria-selected="false" data-range="medium_term">
+            Last 6 months
+          </button>
+          <button class="tab" type="button" role="tab" aria-selected="false" data-range="long_term">
+            All time
+          </button>
         </div>
+        <div id="dashboard-status" class="subtle-text">Checking Spotify session...</div>
       </section>
-    </main>
+
+      <section class="dashboard-grid">
+        <section class="panel panel-span-2" aria-labelledby="top-tracks-heading">
+          <div class="panel-head">
+            <div>
+              <p class="kicker">Your Sound</p>
+              <h2 id="top-tracks-heading">Top Tracks</h2>
+            </div>
+            <button class="btn btn-ghost btn-small" type="button" data-retry="tracks">Retry</button>
+          </div>
+          <div id="top-tracks" class="cards-grid track-grid" aria-live="polite"></div>
+        </section>
+
+        <section class="panel" aria-labelledby="top-artists-heading">
+          <div class="panel-head">
+            <div>
+              <p class="kicker">Artists</p>
+              <h2 id="top-artists-heading">Top Artists</h2>
+            </div>
+            <button class="btn btn-ghost btn-small" type="button" data-retry="artists">Retry</button>
+          </div>
+          <div id="top-artists" class="cards-grid artist-grid" aria-live="polite"></div>
+        </section>
+
+        <section class="panel panel-span-2" aria-labelledby="recent-heading">
+          <div class="panel-head">
+            <div>
+              <p class="kicker">Playback</p>
+              <h2 id="recent-heading">Recently Played</h2>
+            </div>
+            <button class="btn btn-ghost btn-small" type="button" data-retry="recent">Retry</button>
+          </div>
+          <div id="recently-played" class="recent-list" aria-live="polite"></div>
+        </section>
+
+        <section class="panel mood-panel panel-span-2" aria-labelledby="mood-heading">
+          <div class="panel-head">
+            <div>
+              <p class="kicker">Generator</p>
+              <h2 id="mood-heading">Mood Playlist Generator</h2>
+            </div>
+          </div>
+
+          <div class="mood-controls">
+            <div class="control-block">
+              <label class="control-label">Choose a mood</label>
+              <div id="mood-buttons" class="mood-buttons" role="group" aria-label="Mood options">
+                <button class="chip-btn is-active" type="button" data-mood="chill">Chill</button>
+                <button class="chip-btn" type="button" data-mood="focus">Focus</button>
+                <button class="chip-btn" type="button" data-mood="gym">Gym</button>
+                <button class="chip-btn" type="button" data-mood="party">Party</button>
+                <button class="chip-btn" type="button" data-mood="heartbreak">Heartbreak</button>
+                <button class="chip-btn" type="button" data-mood="soft">Soft</button>
+              </div>
+            </div>
+
+            <label class="toggle-row">
+              <input id="use-top-seeds" type="checkbox" checked />
+              <span class="toggle-ui" aria-hidden="true"></span>
+              <span>Make it like my top tracks</span>
+            </label>
+
+            <div class="mood-actions">
+              <button id="generate-playlist" class="btn btn-primary" type="button">
+                Generate Playlist
+              </button>
+              <button id="retry-generate" class="btn btn-ghost hidden" type="button">
+                Retry Generate
+              </button>
+            </div>
+          </div>
+
+          <div id="mood-generator-status" class="subtle-text">
+            Pick a mood and generate a playlist from your taste profile.
+          </div>
+
+          <div id="mood-result" class="mood-result" aria-live="polite"></div>
+        </section>
+      </section>
+    </div>
   </body>
 </html>
