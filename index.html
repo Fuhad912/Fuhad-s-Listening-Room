@@ -1,0 +1,194 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="Fuhad's Listening Room: a Spotify-powered listening lounge with playlist highlights, artist spotlights, new releases, and search."
+    />
+    <meta name="theme-color" content="#0b0d0f" />
+    <title>Fuhad's Listening Room</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Space+Grotesk:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <script src="app.js" defer></script>
+  </head>
+  <body>
+    <div class="ambient ambient-a" aria-hidden="true"></div>
+    <div class="ambient ambient-b" aria-hidden="true"></div>
+    <div class="grain" aria-hidden="true"></div>
+
+    <header class="site-header">
+      <a class="brand" href="/" aria-label="Fuhad's Listening Room home">
+        <span class="brand-mark" aria-hidden="true"></span>
+        <span class="brand-text">
+          <span class="brand-title">Fuhad's Listening Room</span>
+          <span class="brand-subtitle">Spotify-powered curation lounge</span>
+        </span>
+      </a>
+      <div class="header-actions">
+        <a class="button button-accent" href="/api/login">Connect Spotify</a>
+        <button id="refresh-room" class="button button-ghost" type="button">Refresh room</button>
+      </div>
+    </header>
+
+    <main class="page-shell">
+      <section class="panel hero-panel">
+        <div class="hero-copy">
+          <p class="eyebrow">Curated Soundscape</p>
+          <h1>Open the room. Browse the vibe. Jump into Spotify.</h1>
+          <p class="hero-description">
+            A live listening dashboard built on the Spotify Web API. Discover a featured playlist,
+            spotlight artists, fresh releases, and search for anything you want to play next.
+          </p>
+          <form id="search-form" class="search-form" role="search" novalidate>
+            <label class="sr-only" for="search-input">Search Spotify</label>
+            <input
+              id="search-input"
+              name="q"
+              type="search"
+              placeholder="Search songs, artists, or albums"
+              minlength="2"
+              autocomplete="off"
+              spellcheck="false"
+            />
+            <button class="button button-accent" type="submit">Search</button>
+          </form>
+          <p class="search-hint">Try: Burna Boy, SZA, Rema, jazz, amapiano, house, lo-fi.</p>
+        </div>
+
+        <aside class="hero-meta" aria-label="Room status">
+          <div class="status-pill" id="room-status" aria-live="polite">Initializing listening room...</div>
+          <dl class="meta-grid">
+            <div class="meta-item">
+              <dt>Market</dt>
+              <dd id="meta-market">-</dd>
+            </div>
+            <div class="meta-item">
+              <dt>Tracks Loaded</dt>
+              <dd id="meta-track-count">-</dd>
+            </div>
+            <div class="meta-item">
+              <dt>Artists</dt>
+              <dd id="meta-artist-count">-</dd>
+            </div>
+            <div class="meta-item">
+              <dt>Updated</dt>
+              <dd id="meta-updated">-</dd>
+            </div>
+          </dl>
+        </aside>
+      </section>
+
+      <section class="two-column">
+        <section class="panel" aria-labelledby="featured-playlist-title">
+          <div class="panel-header">
+            <div>
+              <p class="eyebrow">Featured Playlist</p>
+              <h2 id="featured-playlist-title">Room Queue</h2>
+            </div>
+          </div>
+          <div id="featured-playlist" class="featured-playlist-shell"></div>
+          <div class="list-shell">
+            <div class="list-header">
+              <h3>Playlist Highlights</h3>
+              <span id="playlist-track-total" class="list-count">-</span>
+            </div>
+            <ol id="playlist-tracks" class="track-list"></ol>
+          </div>
+        </section>
+
+        <section class="panel" aria-labelledby="spotlight-title">
+          <div class="panel-header">
+            <div>
+              <p class="eyebrow">Artist Spotlight</p>
+              <h2 id="spotlight-title">Top Tracks</h2>
+            </div>
+          </div>
+          <div id="spotlight-artist" class="spotlight-artist-shell"></div>
+          <div class="list-shell">
+            <div class="list-header">
+              <h3>Popular Right Now</h3>
+              <span id="spotlight-track-total" class="list-count">-</span>
+            </div>
+            <ol id="spotlight-tracks" class="track-list"></ol>
+          </div>
+        </section>
+      </section>
+
+      <section class="panel" aria-labelledby="artists-title">
+        <div class="panel-header">
+          <div>
+            <p class="eyebrow">Discover</p>
+            <h2 id="artists-title">Featured Artists</h2>
+          </div>
+        </div>
+        <div id="artists-grid" class="cards-grid artist-grid"></div>
+      </section>
+
+      <section class="panel" aria-labelledby="releases-title">
+        <div class="panel-header">
+          <div>
+            <p class="eyebrow">Fresh Drops</p>
+            <h2 id="releases-title">New Releases</h2>
+          </div>
+        </div>
+        <div id="releases-grid" class="cards-grid release-grid"></div>
+      </section>
+
+      <section class="panel search-panel" aria-labelledby="search-results-title">
+        <div class="panel-header">
+          <div>
+            <p class="eyebrow">Search</p>
+            <h2 id="search-results-title">Spotify Search Results</h2>
+          </div>
+          <div id="search-state" class="panel-note" aria-live="polite">Type at least 2 characters to search.</div>
+        </div>
+
+        <div class="search-columns">
+          <section class="search-column" aria-labelledby="search-tracks-title">
+            <div class="column-header">
+              <h3 id="search-tracks-title">Tracks</h3>
+              <span id="search-tracks-count" class="list-count">0</span>
+            </div>
+            <div id="search-tracks" class="search-list"></div>
+          </section>
+
+          <section class="search-column" aria-labelledby="search-artists-title">
+            <div class="column-header">
+              <h3 id="search-artists-title">Artists</h3>
+              <span id="search-artists-count" class="list-count">0</span>
+            </div>
+            <div id="search-artists" class="search-card-list"></div>
+          </section>
+
+          <section class="search-column" aria-labelledby="search-albums-title">
+            <div class="column-header">
+              <h3 id="search-albums-title">Albums</h3>
+              <span id="search-albums-count" class="list-count">0</span>
+            </div>
+            <div id="search-albums" class="search-card-list"></div>
+          </section>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <p>
+        Powered by the Spotify Web API. Open items in Spotify to play full tracks. Preview clips may
+        be unavailable for some songs.
+      </p>
+    </footer>
+
+    <noscript>
+      <div class="noscript-banner">
+        JavaScript is required to load Spotify data for Fuhad's Listening Room.
+      </div>
+    </noscript>
+  </body>
+</html>

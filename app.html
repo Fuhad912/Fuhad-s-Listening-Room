@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#0b0d0f" />
+    <title>Spotify Connected | Fuhad's Listening Room</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Space+Grotesk:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="ambient ambient-a" aria-hidden="true"></div>
+    <div class="ambient ambient-b" aria-hidden="true"></div>
+    <div class="grain" aria-hidden="true"></div>
+
+    <header class="site-header">
+      <a class="brand" href="/index.html" aria-label="Fuhad's Listening Room home">
+        <span class="brand-mark" aria-hidden="true"></span>
+        <span class="brand-text">
+          <span class="brand-title">Fuhad's Listening Room</span>
+          <span class="brand-subtitle">Spotify authorization complete</span>
+        </span>
+      </a>
+      <div class="header-actions">
+        <a class="button button-ghost" href="/index.html">Back to Room</a>
+        <a class="button button-accent" href="/api/logout">Logout</a>
+      </div>
+    </header>
+
+    <main class="page-shell">
+      <section class="panel">
+        <div class="panel-header">
+          <div>
+            <p class="eyebrow">Connected</p>
+            <h2>Spotify account authorization succeeded</h2>
+          </div>
+        </div>
+        <p class="hero-description">
+          Your Spotify OAuth tokens are stored in secure HTTP-only cookies on this domain. This page
+          is the post-login landing target for the Authorization Code Flow.
+        </p>
+        <div class="chip-row" style="margin-top:0.9rem">
+          <span class="pill">Authorization Code Flow</span>
+          <span class="pill">HTTP-only Cookies</span>
+          <span class="pill">Vercel Functions</span>
+        </div>
+        <div class="chip-row" style="margin-top:1rem">
+          <a class="button button-accent" href="/index.html">Open Listening Room</a>
+          <a class="button button-ghost" href="/api/logout">Sign out</a>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>
