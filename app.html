@@ -13,6 +13,7 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="/styles.css" />
+    <script src="/js/nav.js" defer></script>
     <script src="/js/ui.js" defer></script>
     <script src="/js/app.js" defer></script>
   </head>
@@ -121,6 +122,45 @@
             </div>
 
             <div id="dayroom-map" class="dayroom-map"></div>
+          </section>
+
+          <section class="signature-panel" aria-labelledby="signature-heading">
+            <div class="signature-head">
+              <div>
+                <p class="kicker">Signature Playlist</p>
+                <h3 id="signature-heading">Fuhad's Signature Playlist</h3>
+              </div>
+              <div id="signature-status-badge" class="subtle-text signature-badge">Not set up</div>
+            </div>
+
+            <div id="signature-summary" class="signature-summary" aria-live="polite">
+              <strong>No signature playlist linked yet.</strong>
+              <span>Create one private playlist that this room can refresh whenever your taste shifts.</span>
+            </div>
+
+            <div class="signature-actions">
+              <button id="signature-create" class="btn btn-primary btn-small" type="button">
+                Create Signature Playlist
+              </button>
+              <button id="signature-refresh-dayroom" class="btn btn-ghost btn-small" type="button">
+                Refresh from Suggested Room
+              </button>
+              <button id="signature-refresh" class="btn btn-ghost btn-small" type="button">
+                Refresh Signature Playlist
+              </button>
+              <a id="signature-open" class="btn btn-secondary btn-small hidden" href="#" target="_blank" rel="noreferrer">
+                Open in Spotify
+              </a>
+              <button id="signature-reset" class="btn btn-ghost btn-small" type="button">
+                Reset Link
+              </button>
+            </div>
+
+            <div id="signature-status" class="subtle-text signature-status">
+              Uses your current mood, time range, and seed preference.
+            </div>
+
+            <div id="signature-preview" class="signature-preview"></div>
           </section>
 
           <section class="preset-panel" aria-labelledby="presets-heading">
