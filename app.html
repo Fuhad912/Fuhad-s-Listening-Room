@@ -4,8 +4,14 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#121826" />
-    <meta name="description" content="Spotify taste dashboard for Fuhad's Listening Room." />
-    <title>Dashboard | Fuhad's Listening Room</title>
+    <meta name="description" content="Spotify taste dashboard for Fuhad Music Room." />
+    <title>Dashboard | Fuhad Music Room</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="/styles.css" />
     <script src="/js/ui.js" defer></script>
     <script src="/js/app.js" defer></script>
@@ -24,7 +30,7 @@
       <header class="topbar">
         <div class="brand-block">
           <p class="kicker">Spotify Dashboard</p>
-          <h1>Fuhad's Listening Room</h1>
+          <h1>Fuhad Music Room</h1>
         </div>
         <div class="topbar-actions">
           <a class="btn btn-secondary" href="/index.html">Home</a>
@@ -88,6 +94,58 @@
               <h2 id="mood-heading">Mood Playlist Generator</h2>
             </div>
           </div>
+
+          <section class="dayroom-panel" aria-labelledby="dayroom-heading">
+            <div class="dayroom-head">
+              <div>
+                <p class="kicker">Time-of-day Rooms</p>
+                <h3 id="dayroom-heading">Suggested room for right now</h3>
+              </div>
+              <div id="dayroom-clock" class="subtle-text dayroom-clock">--</div>
+            </div>
+
+            <div id="dayroom-summary" class="dayroom-summary" aria-live="polite"></div>
+
+            <div class="dayroom-actions">
+              <button id="apply-dayroom" class="btn btn-ghost btn-small" type="button">
+                Apply Suggested Room
+              </button>
+              <button id="assign-dayroom" class="btn btn-ghost btn-small" type="button">
+                Use Active Preset for This Time
+              </button>
+              <label class="toggle-row dayroom-toggle">
+                <input id="auto-apply-dayroom" type="checkbox" />
+                <span class="toggle-ui" aria-hidden="true"></span>
+                <span>Auto-apply on open</span>
+              </label>
+            </div>
+
+            <div id="dayroom-map" class="dayroom-map"></div>
+          </section>
+
+          <section class="preset-panel" aria-labelledby="presets-heading">
+            <div class="preset-head">
+              <div>
+                <p class="kicker">Fuhad Mode Presets</p>
+                <h3 id="presets-heading">Saved room setups</h3>
+              </div>
+              <div id="preset-state" class="subtle-text preset-state">Custom setup</div>
+            </div>
+
+            <div class="preset-form">
+              <label class="sr-only" for="preset-name">Preset name</label>
+              <input
+                id="preset-name"
+                class="preset-input"
+                type="text"
+                maxlength="40"
+                placeholder="Name this setup (e.g. Late Night Focus)"
+              />
+              <button id="save-preset" class="btn btn-ghost btn-small" type="button">Save Current</button>
+            </div>
+
+            <div id="preset-list" class="preset-list" aria-live="polite"></div>
+          </section>
 
           <div class="mood-controls">
             <div class="control-block">
