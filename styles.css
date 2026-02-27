@@ -895,6 +895,61 @@ body.is-mobile-nav-open .mobile-nav-drawer {
   grid-template-columns: 1fr;
 }
 
+.analytics-controls {
+  margin-top: var(--s-4);
+}
+
+.analytics-grid {
+  align-items: start;
+}
+
+.analytics-summary-panel .panel-head {
+  margin-bottom: var(--s-3);
+}
+
+.analytics-metric-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--s-3);
+}
+
+.analytics-metric-card {
+  background: var(--surface-2);
+  border: 1px solid rgba(242, 242, 242, 0.04);
+  border-radius: var(--radius-2);
+  padding: var(--s-3);
+  display: grid;
+  gap: 6px;
+}
+
+.analytics-metric-label {
+  color: var(--text-2);
+  font-size: 0.76rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.analytics-metric-card strong {
+  color: var(--text);
+  font-size: 1.24rem;
+  line-height: 1;
+}
+
+.analytics-chart-panel .panel-head {
+  margin-bottom: var(--s-3);
+}
+
+.chart-wrap {
+  position: relative;
+  width: 100%;
+  height: 290px;
+}
+
+.chart-wrap canvas {
+  width: 100% !important;
+  height: 100% !important;
+}
+
 .enter-grid {
   margin-top: var(--s-5);
   display: grid;
@@ -2007,6 +2062,10 @@ body.is-mobile-nav-open .mobile-nav-drawer {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 
+  .chart-wrap {
+    height: 340px;
+  }
+
   .artist-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
@@ -2106,6 +2165,18 @@ body.is-mobile-nav-open .mobile-nav-drawer {
   .tabs-panel > .subtle-text,
   #dashboard-status {
     margin-top: var(--s-3);
+  }
+
+  .analytics-metric-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .analytics-metric-card strong {
+    font-size: 1.1rem;
+  }
+
+  .chart-wrap {
+    height: 250px;
   }
 
   .mood-buttons {
