@@ -3,9 +3,9 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#121826" />
-    <meta name="description" content="Spotify taste dashboard for Fuhad Music Room." />
-    <title>Dashboard | Fuhad Music Room</title>
+    <meta name="theme-color" content="#3b3c36" />
+    <meta name="description" content="Spotify analytics dashboard for Fuhad Music Room." />
+    <title>Analytics | Fuhad Music Room</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -13,8 +13,8 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="/styles.css" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js" defer></script>
     <script src="/js/nav.js" defer></script>
-    <script src="/js/ui.js" defer></script>
     <script src="/js/app.js" defer></script>
   </head>
   <body class="dashboard-page">
@@ -30,197 +30,108 @@
     <div class="dashboard-shell">
       <header class="topbar">
         <div class="brand-block">
-          <p class="kicker">Spotify Dashboard</p>
+          <p class="kicker">Spotify Analytics</p>
           <h1>Fuhad Music Room</h1>
         </div>
         <div class="topbar-actions">
-          <a class="btn btn-secondary" href="/index.html">Home</a>
+          <a class="btn btn-secondary" href="/enter.html">Enter Room</a>
           <a class="btn btn-primary" href="/api/logout">Logout</a>
         </div>
       </header>
 
-      <section class="panel tabs-panel" aria-label="Time range selector">
-        <div class="tabs" role="tablist" aria-label="Top listening time range">
-          <button class="tab is-active" type="button" role="tab" aria-selected="true" data-range="short_term">
+      <section class="panel tabs-panel analytics-controls" aria-label="Time range selector">
+        <div class="tabs" role="tablist" aria-label="Listening analytics time range">
+          <button class="tab is-active" type="button" role="tab" aria-selected="true" data-range="short_term" data-time-range>
             Last 4 weeks
           </button>
-          <button class="tab" type="button" role="tab" aria-selected="false" data-range="medium_term">
+          <button class="tab" type="button" role="tab" aria-selected="false" data-range="medium_term" data-time-range>
             Last 6 months
           </button>
-          <button class="tab" type="button" role="tab" aria-selected="false" data-range="long_term">
+          <button class="tab" type="button" role="tab" aria-selected="false" data-range="long_term" data-time-range>
             All time
           </button>
         </div>
         <div id="dashboard-status" class="subtle-text">Checking Spotify session...</div>
       </section>
 
-      <section class="dashboard-grid">
-        <section class="panel panel-span-2" aria-labelledby="top-tracks-heading">
+      <section class="dashboard-grid analytics-grid">
+        <section class="panel panel-span-2 analytics-summary-panel" aria-labelledby="analytics-summary-heading">
           <div class="panel-head">
             <div>
-              <p class="kicker">Your Sound</p>
-              <h2 id="top-tracks-heading">Top Tracks</h2>
+              <p class="kicker">Overview</p>
+              <h2 id="analytics-summary-heading">Listening Snapshot</h2>
             </div>
-            <button class="btn btn-ghost btn-small" type="button" data-retry="tracks">Retry</button>
+            <button id="analytics-reload" class="btn btn-ghost btn-small" type="button">Reload</button>
           </div>
-          <div id="top-tracks" class="cards-grid track-grid" aria-live="polite"></div>
+          <div class="analytics-metric-grid" aria-live="polite">
+            <article class="analytics-metric-card">
+              <span class="analytics-metric-label">Top Tracks Loaded</span>
+              <strong id="metric-top-tracks">--</strong>
+            </article>
+            <article class="analytics-metric-card">
+              <span class="analytics-metric-label">Top Artists Loaded</span>
+              <strong id="metric-top-artists">--</strong>
+            </article>
+            <article class="analytics-metric-card">
+              <span class="analytics-metric-label">Recent Plays Sample</span>
+              <strong id="metric-recent-plays">--</strong>
+            </article>
+            <article class="analytics-metric-card">
+              <span class="analytics-metric-label">Avg Track Popularity</span>
+              <strong id="metric-avg-popularity">--</strong>
+            </article>
+          </div>
+          <div id="analytics-summary-note" class="subtle-text">
+            Loading profile analytics...
+          </div>
         </section>
 
-        <section class="panel" aria-labelledby="top-artists-heading">
+        <section class="panel analytics-chart-panel panel-span-2" aria-labelledby="chart-top-tracks-heading">
+          <div class="panel-head">
+            <div>
+              <p class="kicker">Tracks</p>
+              <h2 id="chart-top-tracks-heading">Top Tracks by Popularity</h2>
+            </div>
+          </div>
+          <div class="chart-wrap">
+            <canvas id="chart-top-tracks" aria-label="Top tracks popularity chart"></canvas>
+          </div>
+        </section>
+
+        <section class="panel analytics-chart-panel" aria-labelledby="chart-top-artists-heading">
           <div class="panel-head">
             <div>
               <p class="kicker">Artists</p>
-              <h2 id="top-artists-heading">Top Artists</h2>
+              <h2 id="chart-top-artists-heading">Top Artists by Popularity</h2>
             </div>
-            <button class="btn btn-ghost btn-small" type="button" data-retry="artists">Retry</button>
           </div>
-          <div id="top-artists" class="cards-grid artist-grid" aria-live="polite"></div>
+          <div class="chart-wrap">
+            <canvas id="chart-top-artists" aria-label="Top artists popularity chart"></canvas>
+          </div>
         </section>
 
-        <section class="panel panel-span-2" aria-labelledby="recent-heading">
+        <section class="panel analytics-chart-panel" aria-labelledby="chart-genres-heading">
           <div class="panel-head">
             <div>
-              <p class="kicker">Playback</p>
-              <h2 id="recent-heading">Recently Played</h2>
+              <p class="kicker">Genres</p>
+              <h2 id="chart-genres-heading">Genre Presence</h2>
             </div>
-            <button class="btn btn-ghost btn-small" type="button" data-retry="recent">Retry</button>
           </div>
-          <div id="recently-played" class="recent-list" aria-live="polite"></div>
+          <div class="chart-wrap">
+            <canvas id="chart-genres" aria-label="Genre distribution chart"></canvas>
+          </div>
         </section>
 
-        <section class="panel mood-panel panel-span-2" aria-labelledby="mood-heading">
+        <section class="panel analytics-chart-panel panel-span-2" aria-labelledby="chart-recent-hours-heading">
           <div class="panel-head">
             <div>
-              <p class="kicker">Generator</p>
-              <h2 id="mood-heading">Mood Playlist Generator</h2>
+              <p class="kicker">Playback Pattern</p>
+              <h2 id="chart-recent-hours-heading">Recent Plays by Hour</h2>
             </div>
           </div>
-
-          <section class="dayroom-panel" aria-labelledby="dayroom-heading">
-            <div class="dayroom-head">
-              <div>
-                <p class="kicker">Time-of-day Rooms</p>
-                <h3 id="dayroom-heading">Suggested room for right now</h3>
-              </div>
-              <div id="dayroom-clock" class="subtle-text dayroom-clock">--</div>
-            </div>
-
-            <div id="dayroom-summary" class="dayroom-summary" aria-live="polite"></div>
-
-            <div class="dayroom-actions">
-              <button id="apply-dayroom" class="btn btn-ghost btn-small" type="button">
-                Apply Suggested Room
-              </button>
-              <button id="assign-dayroom" class="btn btn-ghost btn-small" type="button">
-                Use Active Preset for This Time
-              </button>
-              <label class="toggle-row dayroom-toggle">
-                <input id="auto-apply-dayroom" type="checkbox" />
-                <span class="toggle-ui" aria-hidden="true"></span>
-                <span>Auto-apply on open</span>
-              </label>
-            </div>
-
-            <div id="dayroom-map" class="dayroom-map"></div>
-          </section>
-
-          <section class="signature-panel" aria-labelledby="signature-heading">
-            <div class="signature-head">
-              <div>
-                <p class="kicker">Signature Playlist</p>
-                <h3 id="signature-heading">Fuhad's Signature Playlist</h3>
-              </div>
-              <div id="signature-status-badge" class="subtle-text signature-badge">Not set up</div>
-            </div>
-
-            <div id="signature-summary" class="signature-summary" aria-live="polite">
-              <strong>No signature playlist linked yet.</strong>
-              <span>Create one private playlist that this room can refresh whenever your taste shifts.</span>
-            </div>
-
-            <div class="signature-actions">
-              <button id="signature-create" class="btn btn-primary btn-small" type="button">
-                Create Signature Playlist
-              </button>
-              <button id="signature-refresh-dayroom" class="btn btn-ghost btn-small" type="button">
-                Refresh from Suggested Room
-              </button>
-              <button id="signature-refresh" class="btn btn-ghost btn-small" type="button">
-                Refresh Signature Playlist
-              </button>
-              <a id="signature-open" class="btn btn-secondary btn-small hidden" href="#" target="_blank" rel="noreferrer">
-                Open in Spotify
-              </a>
-              <button id="signature-reset" class="btn btn-ghost btn-small" type="button">
-                Reset Link
-              </button>
-            </div>
-
-            <div id="signature-status" class="subtle-text signature-status">
-              Uses your current mood, time range, and seed preference.
-            </div>
-
-            <div id="signature-preview" class="signature-preview"></div>
-          </section>
-
-          <section class="preset-panel" aria-labelledby="presets-heading">
-            <div class="preset-head">
-              <div>
-                <p class="kicker">Fuhad Mode Presets</p>
-                <h3 id="presets-heading">Saved room setups</h3>
-              </div>
-              <div id="preset-state" class="subtle-text preset-state">Custom setup</div>
-            </div>
-
-            <div class="preset-form">
-              <label class="sr-only" for="preset-name">Preset name</label>
-              <input
-                id="preset-name"
-                class="preset-input"
-                type="text"
-                maxlength="40"
-                placeholder="Name this setup (e.g. Late Night Focus)"
-              />
-              <button id="save-preset" class="btn btn-ghost btn-small" type="button">Save Current</button>
-            </div>
-
-            <div id="preset-list" class="preset-list" aria-live="polite"></div>
-          </section>
-
-          <div class="mood-controls">
-            <div class="control-block">
-              <label class="control-label">Choose a mood</label>
-              <div id="mood-buttons" class="mood-buttons" role="group" aria-label="Mood options">
-                <button class="chip-btn is-active" type="button" data-mood="chill">Chill</button>
-                <button class="chip-btn" type="button" data-mood="focus">Focus</button>
-                <button class="chip-btn" type="button" data-mood="gym">Gym</button>
-                <button class="chip-btn" type="button" data-mood="party">Party</button>
-                <button class="chip-btn" type="button" data-mood="heartbreak">Heartbreak</button>
-                <button class="chip-btn" type="button" data-mood="soft">Soft</button>
-              </div>
-            </div>
-
-            <label class="toggle-row">
-              <input id="use-top-seeds" type="checkbox" checked />
-              <span class="toggle-ui" aria-hidden="true"></span>
-              <span>Make it like my top tracks</span>
-            </label>
-
-            <div class="mood-actions">
-              <button id="generate-playlist" class="btn btn-primary" type="button">
-                Generate Playlist
-              </button>
-              <button id="retry-generate" class="btn btn-ghost hidden" type="button">
-                Retry Generate
-              </button>
-            </div>
+          <div class="chart-wrap">
+            <canvas id="chart-recent-hours" aria-label="Recent plays by hour chart"></canvas>
           </div>
-
-          <div id="mood-generator-status" class="subtle-text">
-            Pick a mood and generate a playlist from your taste profile.
-          </div>
-
-          <div id="mood-result" class="mood-result" aria-live="polite"></div>
         </section>
       </section>
     </div>
