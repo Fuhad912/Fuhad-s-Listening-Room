@@ -25,16 +25,14 @@
       <span class="stars"></span>
     </div>
 
-    <div id="toast-root" class="toast-root" aria-live="polite" aria-atomic="true"></div>
-
-    <div class="dashboard-shell">
+    <main class="dashboard-shell">
       <header class="topbar">
         <div class="brand-block">
           <p class="kicker">Spotify Analytics</p>
           <h1>Fuhad Music Room</h1>
         </div>
         <div class="topbar-actions">
-          <a class="btn btn-secondary" href="/enter.html">Enter Room</a>
+          <a class="btn btn-secondary" href="/enter.html">Enter Page</a>
           <a class="btn btn-primary" href="/api/logout">Logout</a>
         </div>
       </header>
@@ -66,27 +64,25 @@
           <div class="analytics-metric-grid" aria-live="polite">
             <article class="analytics-metric-card">
               <span class="analytics-metric-label">Top Tracks Loaded</span>
-              <strong id="metric-top-tracks">--</strong>
+              <strong id="metric-top-tracks">0</strong>
             </article>
             <article class="analytics-metric-card">
               <span class="analytics-metric-label">Top Artists Loaded</span>
-              <strong id="metric-top-artists">--</strong>
+              <strong id="metric-top-artists">0</strong>
             </article>
             <article class="analytics-metric-card">
               <span class="analytics-metric-label">Recent Plays Sample</span>
-              <strong id="metric-recent-plays">--</strong>
+              <strong id="metric-recent-plays">0</strong>
             </article>
             <article class="analytics-metric-card">
               <span class="analytics-metric-label">Avg Track Popularity</span>
-              <strong id="metric-avg-popularity">--</strong>
+              <strong id="metric-avg-popularity">0/100</strong>
             </article>
           </div>
-          <div id="analytics-summary-note" class="subtle-text">
-            Loading profile analytics...
-          </div>
+          <div id="analytics-summary-note" class="subtle-text">Loading analytics...</div>
         </section>
 
-        <section class="panel analytics-chart-panel panel-span-2" aria-labelledby="chart-top-tracks-heading">
+        <section id="analytics-charts" class="panel analytics-chart-panel panel-span-2" aria-labelledby="chart-top-tracks-heading">
           <div class="panel-head">
             <div>
               <p class="kicker">Tracks</p>
@@ -118,7 +114,7 @@
             </div>
           </div>
           <div class="chart-wrap">
-            <canvas id="chart-genres" aria-label="Genre distribution chart"></canvas>
+            <canvas id="chart-genres" aria-label="Genre presence chart"></canvas>
           </div>
         </section>
 
@@ -133,7 +129,11 @@
             <canvas id="chart-recent-hours" aria-label="Recent plays by hour chart"></canvas>
           </div>
         </section>
-      </section>
-    </div>
-  </body>
-</html>
+
+        <section class="panel panel-span-2" aria-labelledby="list-top-tracks-heading">
+          <div class="panel-head">
+            <div>
+              <p class="kicker">Top Tracks List</p>
+              <h2 id="list-top-tracks-heading">Ranked Tracks</h2>
+            </div>
+          </div>
