@@ -303,8 +303,7 @@
           .map((track, index) => {
             const trackName = escapeHtml(track && track.name ? track.name : "Unknown track");
             const artists = escapeHtml(artistNames(track && track.artists) || "Unknown artist");
-            const popularity = Number(track && track.popularity) || 0;
-            return `<li><span>${index + 1}. ${trackName} <small>${artists}</small></span><strong>${popularity}</strong></li>`;
+            return `<li><span>${index + 1}. ${trackName} <small>${artists}</small></span></li>`;
           })
           .join("");
       }
@@ -319,8 +318,7 @@
           .slice(0, 10)
           .map((artist, index) => {
             const artistName = escapeHtml(artist && artist.name ? artist.name : "Unknown artist");
-            const popularity = Number(artist && artist.popularity) || 0;
-            return `<li><span>${index + 1}. ${artistName}</span><strong>${popularity}</strong></li>`;
+            return `<li><span>${index + 1}. ${artistName}</span></li>`;
           })
           .join("");
       }
