@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#3b3c36" />
+    <meta name="theme-color" content="#5E3B8C" />
     <meta name="description" content="Spotify analytics dashboard for Fuhad Music Room." />
     <title>Analytics | Fuhad Music Room</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -32,7 +32,8 @@
           <h1>Fuhad Music Room</h1>
         </div>
         <div class="topbar-actions">
-          <a class="btn btn-secondary" href="/enter.html">Enter Page</a>
+          <a class="btn btn-secondary" href="/index.html">Home</a>
+          <a class="btn btn-secondary" href="/enter.html">Room</a>
           <a class="btn btn-primary" href="/api/logout">Logout</a>
         </div>
       </header>
@@ -137,3 +138,19 @@
               <h2 id="list-top-tracks-heading">Ranked Tracks</h2>
             </div>
           </div>
+          <ol id="top-tracks-list" class="analytics-list"></ol>
+        </section>
+
+        <section class="panel" aria-labelledby="list-top-artists-heading">
+          <div class="panel-head">
+            <div>
+              <p class="kicker">Top Artists List</p>
+              <h2 id="list-top-artists-heading">Ranked Artists</h2>
+            </div>
+          </div>
+          <ol id="top-artists-list" class="analytics-list"></ol>
+        </section>
+      </section>
+    </main>
+  </body>
+</html>
