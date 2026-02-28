@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#5E3B8C" />
+    <meta name="theme-color" content="#000000" />
     <meta name="description" content="Welcome page for Fuhad Music Room." />
     <title>Fuhad Music Room</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -13,6 +13,9 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="/styles.css" />
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js" defer></script>
+    <script src="/js/animations.js" defer></script>
+    <script src="/js/home.js" defer></script>
   </head>
   <body class="landing-page">
     <div class="cosmos-bg" aria-hidden="true">
@@ -34,6 +37,26 @@
           <a class="btn btn-primary" href="/enter.html">Open Room Page</a>
           <a class="btn btn-secondary" href="/app.html">Open Analytics Page</a>
         </div>
+
+        <section class="now-playing-panel" aria-live="polite" aria-label="Now playing">
+          <p class="kicker">Now Playing</p>
+          <div class="now-playing-card">
+            <div id="now-playing-art" class="now-playing-art">
+              <div class="now-playing-fallback" aria-hidden="true">NP</div>
+            </div>
+            <div class="now-playing-body">
+              <h3 id="now-playing-title" class="now-playing-title">Checking your Spotify player...</h3>
+              <p id="now-playing-meta" class="now-playing-meta">If nothing appears, your player is currently idle.</p>
+            </div>
+          </div>
+          <div class="now-playing-actions">
+            <button id="now-playing-refresh" class="btn btn-ghost btn-small" type="button">Refresh</button>
+            <a id="now-playing-link" class="btn btn-secondary btn-small hidden" href="#" target="_blank" rel="noreferrer">
+              Open in Spotify
+            </a>
+            <a class="btn btn-ghost btn-small" href="/api/login">Connect Spotify</a>
+          </div>
+        </section>
       </section>
     </main>
 
