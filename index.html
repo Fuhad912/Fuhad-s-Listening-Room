@@ -4,10 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#3b3c36" />
-    <meta
-      name="description"
-      content="Fuhad Music Room is a private Spotify-powered studio for your music taste."
-    />
+    <meta name="description" content="Fuhad Music Room is a private Spotify analytics room." />
     <title>Fuhad Music Room</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -27,233 +24,63 @@
     </div>
 
     <main class="site-shell">
-      <section class="hero-card">
-        <div class="hero-copy">
-          <p class="kicker">Private Listening Studio</p>
-          <div class="hero-badges" aria-label="Product highlights">
-            <span class="hero-badge">Spotify OAuth</span>
-            <span class="hero-badge">Private by Design</span>
-            <span class="hero-badge">Personal Workflow</span>
-          </div>
+      <header class="topbar">
+        <div class="brand-block">
+          <p class="kicker">Spotify + Analytics</p>
           <h1>Fuhad Music Room</h1>
-          <p class="tagline">A private listening studio for moods, routines, and taste shifts.</p>
-          <p class="lede">
-            Spotify-powered and built for one listener. Enter your room, pick a preset, and shape
-            your listening around how you actually move through the day.
-          </p>
-          <p class="hero-trust">Built for Fuhad only. No public profiles. No noise.</p>
-
-          <div id="landing-error" class="banner banner-error hidden" role="alert"></div>
-
-          <div class="hero-actions">
-            <a class="btn btn-primary" href="/api/login">Enter the Room</a>
-            <a class="btn btn-secondary" href="#studio-preview">Preview the Studio</a>
-            <a class="btn btn-ghost" href="/app.html">Go to Dashboard</a>
-          </div>
         </div>
+        <div class="topbar-actions">
+          <a class="btn btn-primary" href="/api/login">Enter Room</a>
+          <a class="btn btn-secondary" href="/app.html">Open Analytics</a>
+        </div>
+      </header>
 
-        <div id="studio-preview" class="hero-preview" aria-label="Feature previews">
-          <div class="hero-preview-head">
-            <p class="kicker">Studio Preview</p>
-            <p>
-              A personal system for entering the right room, not just browsing tracks.
-            </p>
-          </div>
-          <article class="preview-card">
-            <div class="preview-icon" aria-hidden="true">01</div>
-            <div>
-              <h2>Time-of-day Rooms</h2>
-              <p>Let the room suggest the right preset for morning, evening, or late-night focus.</p>
-            </div>
-          </article>
+      <section class="panel hero-panel" aria-labelledby="home-hero-heading">
+        <p class="kicker">Private Listening Workspace</p>
+        <h2 id="home-hero-heading">Understand your Spotify listening with one clean dashboard.</h2>
+        <p class="lede">
+          This project is now focused on analytics. Connect Spotify, choose a time range, and view
+          the listening patterns that actually matter.
+        </p>
 
-          <article class="preview-card">
-            <div class="preview-icon" aria-hidden="true">02</div>
-            <div>
-              <h2>Signature Playlist</h2>
-              <p>Refresh one evolving playlist that captures your current room settings and taste.</p>
-            </div>
-          </article>
+        <div id="landing-error" class="banner banner-error hidden" role="alert"></div>
 
-          <article class="preview-card">
-            <div class="preview-icon" aria-hidden="true">03</div>
-            <div>
-              <h2>Mood Generator</h2>
-              <p>Build private playlists from your top tracks, recent playback, and selected mood.</p>
-            </div>
-          </article>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="/api/login">Connect Spotify</a>
+          <a class="btn btn-secondary" href="/enter.html">Go to Enter Page</a>
         </div>
       </section>
 
-      <section class="landing-section what-room-section" aria-labelledby="what-room-heading">
-        <div class="landing-section-head">
-          <p class="kicker">What This Is</p>
-          <h2 id="what-room-heading">A personal listening workflow, not another music dashboard.</h2>
-          <p>
-            Fuhad Music Room is designed around routines, moods, and repeatable sessions. It turns
-            Spotify data into a private system you can return to every day.
-          </p>
-        </div>
-
-        <div class="what-room-grid" role="list" aria-label="Product differentiators">
-          <article class="what-room-card" role="listitem">
-            <div class="what-room-index" aria-hidden="true">01</div>
-            <h3>Time-aware entry</h3>
-            <p>
-              Enter through a private lobby that suggests the right room based on time-of-day and
-              your saved presets.
-            </p>
-            <span class="what-room-foot">Morning, evening, night logic • personal presets</span>
-          </article>
-
-          <article class="what-room-card" role="listitem">
-            <div class="what-room-index" aria-hidden="true">02</div>
-            <h3>Signature playlist system</h3>
-            <p>
-              Keep one evolving Spotify playlist linked to your room. Refresh it from your current
-              setup or the suggested room in a single action.
-            </p>
-            <span class="what-room-foot">Persistent playlist • refresh in place</span>
-          </article>
-
-          <article class="what-room-card" role="listitem">
-            <div class="what-room-index" aria-hidden="true">03</div>
-            <h3>Session-based listening</h3>
-            <p>
-              Generate mood playlists from your actual taste profile, then resume your last room
-              session directly from the lobby.
-            </p>
-            <span class="what-room-foot">Taste-based recommendations • resume flow</span>
-          </article>
-        </div>
-      </section>
-
-      <section class="landing-section philosophy-section" aria-labelledby="philosophy-heading">
-        <div class="philosophy-grid">
-          <div class="philosophy-copy">
-            <p class="kicker">Personal Philosophy</p>
-            <h2 id="philosophy-heading">Why I built a private room instead of another playlist tool.</h2>
-            <p>
-              Spotify already gives me endless music. What I wanted was structure: a way to return
-              to the same moods, routines, and phases of listening without starting from zero every
-              time.
-            </p>
-            <p>
-              Fuhad Music Room is my personal listening system. It helps me enter the right
-              headspace, preserve recurring taste patterns, and generate playlists that feel tied
-              to a moment, not just an algorithm.
-            </p>
-            <p>
-              It is intentionally private. No public feed, no performance layer, no clutter. Just
-              a focused studio for how I actually listen.
-            </p>
-          </div>
-
-          <aside class="philosophy-panel" aria-label="Studio principles">
-            <div class="philosophy-panel-head">
-              <p class="kicker">Studio Principles</p>
-              <h3>What the room optimises for</h3>
-            </div>
-
-            <div class="philosophy-list" role="list">
-              <div class="philosophy-item" role="listitem">
-                <span class="philosophy-item-title">Ritual over browsing</span>
-                <span class="philosophy-item-copy"
-                  >Enter a room state quickly with presets and time-aware suggestions.</span
-                >
-              </div>
-              <div class="philosophy-item" role="listitem">
-                <span class="philosophy-item-title">Continuity over novelty</span>
-                <span class="philosophy-item-copy"
-                  >Track recurring phases with a signature playlist and resume flow.</span
-                >
-              </div>
-              <div class="philosophy-item" role="listitem">
-                <span class="philosophy-item-title">Privacy over performance</span>
-                <span class="philosophy-item-copy"
-                  >Built for one listener, with no public profile or social layer.</span
-                >
-              </div>
-            </div>
-          </aside>
-        </div>
-      </section>
-
-      <section class="landing-section preset-showcase-section" aria-labelledby="preset-showcase-heading">
-        <div class="landing-section-head">
-          <p class="kicker">Preset Showcase</p>
-          <h2 id="preset-showcase-heading">Three room modes that define the studio.</h2>
-          <p>
-            These are not just playlist themes. They are repeatable listening states built around
-            time, energy, and how I actually use music during the day.
-          </p>
-        </div>
-
-        <div class="preset-showcase-grid" role="list" aria-label="Featured room presets">
-          <article class="preset-showcase-card" role="listitem">
-            <div class="preset-showcase-top">
-              <span class="preset-showcase-index">01</span>
-              <span class="preset-showcase-chip">Focus</span>
-            </div>
-            <h3>Late Night Focus</h3>
-            <p>
-              Built for deep work and quiet concentration. Pulls from medium-term listening so it
-              feels consistent, calm, and mentally familiar.
-            </p>
-            <div class="preset-showcase-meta">
-              <span>Range: Last 6 months</span>
-              <span>Seeds: Top tracks first</span>
-              <span>Best for: Coding, reading, planning</span>
-            </div>
-          </article>
-
-          <article class="preset-showcase-card" role="listitem">
-            <div class="preset-showcase-top">
-              <span class="preset-showcase-index">02</span>
-              <span class="preset-showcase-chip">Gym</span>
-            </div>
-            <h3>Gym Push</h3>
-            <p>
-              A short-term energy preset designed to reflect current rotation and momentum. Ideal
-              when I want the room to feel immediate and high-output.
-            </p>
-            <div class="preset-showcase-meta">
-              <span>Range: Last 4 weeks</span>
-              <span>Seeds: Top tracks first</span>
-              <span>Best for: Training, movement, resets</span>
-            </div>
-          </article>
-
-          <article class="preset-showcase-card" role="listitem">
-            <div class="preset-showcase-top">
-              <span class="preset-showcase-index">03</span>
-              <span class="preset-showcase-chip">Soft</span>
-            </div>
-            <h3>Soft Sunday</h3>
-            <p>
-              A slower, reflective room that leans on long-term taste and softer recommendation
-              shaping. Meant for recovery days and low-friction listening.
-            </p>
-            <div class="preset-showcase-meta">
-              <span>Range: All time</span>
-              <span>Seeds: Recent-first blend</span>
-              <span>Best for: Recovery, evening drift, journaling</span>
-            </div>
-          </article>
-        </div>
-
-        <div class="preset-showcase-footer">
+      <section id="home-features" class="panel" aria-labelledby="home-features-heading">
+        <div class="panel-head">
           <div>
-            <p class="kicker">Choose Your Entry</p>
-            <p class="preset-showcase-footer-copy">
-              Enter the room to use time-of-day suggestions, or go straight to the dashboard if you
-              already know what you want.
-            </p>
+            <p class="kicker">Core Features</p>
+            <h2 id="home-features-heading">What this website does</h2>
           </div>
-          <div class="preset-showcase-actions">
-            <a class="btn btn-primary" href="/api/login">Enter the Room</a>
-            <a class="btn btn-secondary" href="/app.html">Open Dashboard</a>
-          </div>
+        </div>
+
+        <div class="feature-grid">
+          <article class="feature-card">
+            <h3>Top Track Analytics</h3>
+            <p>See popularity patterns across your top tracks by time range.</p>
+          </article>
+          <article class="feature-card">
+            <h3>Artist + Genre Trends</h3>
+            <p>Understand which artists and genres dominate your listening profile.</p>
+          </article>
+          <article class="feature-card">
+            <h3>Recent Playback Rhythm</h3>
+            <p>Track when you actually listen using recent-played hour distributions.</p>
+          </article>
+        </div>
+      </section>
+
+      <section id="home-cta" class="panel cta-panel" aria-labelledby="home-cta-heading">
+        <h2 id="home-cta-heading">Ready to view your analytics?</h2>
+        <p class="subtle-text">Start with Spotify login, then open the analytics dashboard.</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="/api/login">Enter Room</a>
+          <a class="btn btn-secondary" href="/app.html">Open Analytics</a>
         </div>
       </section>
     </main>
@@ -271,4 +98,103 @@
     </script>
   </body>
 </html>
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#3b3c36" />
+    <meta name="description" content="Fuhad Music Room is a private Spotify analytics room." />
+    <title>Fuhad Music Room</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/js/nav.js" defer></script>
+  </head>
+  <body class="landing-page">
+    <div class="cosmos-bg" aria-hidden="true">
+      <span class="orb orb-a"></span>
+      <span class="orb orb-b"></span>
+      <span class="orb orb-c"></span>
+      <span class="stars"></span>
+    </div>
 
+    <main class="site-shell">
+      <header class="topbar">
+        <div class="brand-block">
+          <p class="kicker">Spotify + Analytics</p>
+          <h1>Fuhad Music Room</h1>
+        </div>
+        <div class="topbar-actions">
+          <a class="btn btn-primary" href="/api/login">Enter Room</a>
+          <a class="btn btn-secondary" href="/app.html">Open Analytics</a>
+        </div>
+      </header>
+
+      <section class="panel hero-panel" aria-labelledby="home-hero-heading">
+        <p class="kicker">Private Listening Workspace</p>
+        <h2 id="home-hero-heading">Understand your Spotify listening with one clean dashboard.</h2>
+        <p class="lede">
+          This project is now focused on analytics. Connect Spotify, choose a time range, and view
+          the listening patterns that actually matter.
+        </p>
+
+        <div id="landing-error" class="banner banner-error hidden" role="alert"></div>
+
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="/api/login">Connect Spotify</a>
+          <a class="btn btn-secondary" href="/enter.html">Go to Enter Page</a>
+        </div>
+      </section>
+
+      <section id="home-features" class="panel" aria-labelledby="home-features-heading">
+        <div class="panel-head">
+          <div>
+            <p class="kicker">Core Features</p>
+            <h2 id="home-features-heading">What this website does</h2>
+          </div>
+        </div>
+
+        <div class="feature-grid">
+          <article class="feature-card">
+            <h3>Top Track Analytics</h3>
+            <p>See popularity patterns across your top tracks by time range.</p>
+          </article>
+          <article class="feature-card">
+            <h3>Artist + Genre Trends</h3>
+            <p>Understand which artists and genres dominate your listening profile.</p>
+          </article>
+          <article class="feature-card">
+            <h3>Recent Playback Rhythm</h3>
+            <p>Track when you actually listen using recent-played hour distributions.</p>
+          </article>
+        </div>
+      </section>
+
+      <section id="home-cta" class="panel cta-panel" aria-labelledby="home-cta-heading">
+        <h2 id="home-cta-heading">Ready to view your analytics?</h2>
+        <p class="subtle-text">Start with Spotify login, then open the analytics dashboard.</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="/api/login">Enter Room</a>
+          <a class="btn btn-secondary" href="/app.html">Open Analytics</a>
+        </div>
+      </section>
+    </main>
+
+    <script>
+      (function () {
+        const params = new URLSearchParams(window.location.search);
+        const rawError = params.get("error");
+        if (!rawError) return;
+        const banner = document.getElementById("landing-error");
+        if (!banner) return;
+        banner.textContent = rawError;
+        banner.classList.remove("hidden");
+      })();
+    </script>
+  </body>
+</html>
