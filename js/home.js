@@ -48,6 +48,15 @@
     els.openLink.classList.remove("hidden");
   }
 
+  async function hasValidSpotifySession() {
+    try {
+      const response = await fetch("/api/spotify?path=/me");
+      return response.ok;
+    } catch (_error) {
+      return false;
+    }
+  }
+
   async function loadNowPlaying() {
     setText("Checking your Spotify player...", "Getting current playback data.");
 
@@ -57,13 +66,6 @@
 
     try {
       const response = await fetch("/api/spotify?path=/me/player/currently-playing");
-
-      if (response.status === 401) {
-        setArtwork("", "");
-        setLink("");
-        setText("Spotify not connected", "Click Connect Spotify, then come back and refresh.");
-        return;
-      }
 
       if (response.status === 204) {
         setArtwork("", "");
@@ -84,6 +86,24 @@
           payload && payload.error && payload.error.message
             ? payload.error.message
             : `Spotify request failed (${response.status})`;
+
+        if (response.status === 401 || response.status === 403) {
+          const connected = await hasValidSpotifySession();
+          if (connected) {
+            setArtwork("", "");
+            setLink("");
+            setText(
+              "Spotify connected, but playback permission is missing",
+              "Click Connect Spotify once to re-authorize playback access."
+            );
+            return;
+          }
+          setArtwork("", "");
+          setLink("");
+          setText("Spotify not connected", "Click Connect Spotify, then come back and refresh.");
+          return;
+        }
+
         setArtwork("", "");
         setLink("");
         setText("Could not load now playing", errorMessage);
