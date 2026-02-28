@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#3b3c36" />
-    <meta name="description" content="Private entrance lobby for Fuhad Music Room." />
+    <meta name="description" content="Enter page for Fuhad Music Room." />
     <title>Enter | Fuhad Music Room</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -14,7 +14,6 @@
     />
     <link rel="stylesheet" href="/styles.css" />
     <script src="/js/nav.js" defer></script>
-    <script src="/js/ui.js" defer></script>
     <script src="/js/enter.js" defer></script>
   </head>
   <body class="enter-page">
@@ -25,12 +24,10 @@
       <span class="stars"></span>
     </div>
 
-    <div id="toast-root" class="toast-root" aria-live="polite" aria-atomic="true"></div>
-
-    <div class="dashboard-shell">
+    <main class="dashboard-shell">
       <header class="topbar">
         <div class="brand-block">
-          <p class="kicker">Private Lobby</p>
+          <p class="kicker">Private Entry</p>
           <h1>Fuhad Music Room</h1>
         </div>
         <div class="topbar-actions">
@@ -39,117 +36,43 @@
         </div>
       </header>
 
-      <section class="enter-grid">
-        <section class="panel enter-hero-panel" aria-labelledby="enter-hero-heading">
-          <div class="enter-hero-copy">
-            <p class="kicker">Enter the Room</p>
-            <h2 id="enter-hero-heading" class="enter-hero-title">Welcome back.</h2>
-            <p id="enter-greeting-meta" class="subtle-text">
-              Checking your Spotify session and preparing your room...
-            </p>
-          </div>
-
-          <div id="enter-room-summary" class="enter-room-summary" aria-live="polite"></div>
-
-          <div class="enter-hero-actions">
-            <button id="enter-apply-suggested" class="btn btn-primary" type="button">
-              Continue with Suggested Room
-            </button>
-            <a class="btn btn-secondary" href="/app.html">Open Dashboard</a>
-          </div>
-
-          <div id="enter-hero-status" class="subtle-text">
-            Your presets and time-of-day rooms shape what happens next.
-          </div>
-        </section>
-
-        <section class="panel enter-signature-panel" aria-labelledby="enter-signature-heading">
-          <div class="panel-head">
-            <div>
-              <p class="kicker">Signature</p>
-              <h2 id="enter-signature-heading">Signature Playlist</h2>
-            </div>
-          </div>
-          <div id="enter-signature-summary" class="enter-signature-summary" aria-live="polite"></div>
-          <div class="enter-signature-actions">
-            <a id="enter-signature-open" class="btn btn-ghost btn-small hidden" href="#" target="_blank" rel="noreferrer">
-              Open in Spotify
-            </a>
-            <a class="btn btn-ghost btn-small" href="/app.html">Manage in Dashboard</a>
-          </div>
-        </section>
-
-        <section class="panel enter-last-session-panel" aria-labelledby="enter-last-session-heading">
-          <div class="panel-head">
-            <div>
-              <p class="kicker">Resume</p>
-              <h2 id="enter-last-session-heading">Last Session</h2>
-            </div>
-          </div>
-          <div id="enter-last-session-summary" class="enter-last-session-summary" aria-live="polite"></div>
-          <div class="enter-last-session-actions">
-            <button id="enter-last-session-resume" class="btn btn-primary btn-small" type="button">
-              Resume This Room
-            </button>
-            <a
-              id="enter-last-session-open"
-              class="btn btn-ghost btn-small hidden"
-              href="#"
-              target="_blank"
-              rel="noreferrer"
-            >
-              Open Playlist
-            </a>
-          </div>
-        </section>
-
-        <section class="panel panel-span-2" aria-labelledby="enter-presets-heading">
-          <div class="panel-head">
-            <div>
-              <p class="kicker">Quick Presets</p>
-              <h2 id="enter-presets-heading">Launch a room setup</h2>
-            </div>
-            <div id="enter-preset-status" class="subtle-text">Select a preset to continue.</div>
-          </div>
-          <div id="enter-presets" class="enter-preset-launch-list" aria-live="polite"></div>
-        </section>
-
-        <section class="panel panel-span-2" aria-labelledby="enter-snapshot-heading">
-          <div class="panel-head">
-            <div>
-              <p class="kicker">Snapshot</p>
-              <h2 id="enter-snapshot-heading">Your room at a glance</h2>
-            </div>
-            <div id="enter-session-status" class="subtle-text">Loading a quick Spotify snapshot...</div>
-          </div>
-
-          <div class="enter-snapshot-grid">
-            <section class="enter-snapshot-card" aria-labelledby="enter-top-track-heading">
-              <div class="enter-snapshot-head">
-                <p class="kicker">Top Track</p>
-                <h3 id="enter-top-track-heading">Last 4 Weeks</h3>
-              </div>
-              <div id="enter-top-track" class="cards-grid track-grid"></div>
-            </section>
-
-            <section class="enter-snapshot-card" aria-labelledby="enter-top-artist-heading">
-              <div class="enter-snapshot-head">
-                <p class="kicker">Top Artist</p>
-                <h3 id="enter-top-artist-heading">Current Favourite</h3>
-              </div>
-              <div id="enter-top-artist" class="cards-grid artist-grid"></div>
-            </section>
-
-            <section class="enter-snapshot-card" aria-labelledby="enter-recent-heading">
-              <div class="enter-snapshot-head">
-                <p class="kicker">Recent</p>
-                <h3 id="enter-recent-heading">Last Played</h3>
-              </div>
-              <div id="enter-recent" class="recent-list"></div>
-            </section>
-          </div>
-        </section>
+      <section class="panel enter-hero" aria-labelledby="enter-heading">
+        <p class="kicker">Session</p>
+        <h2 id="enter-heading">Preparing your Spotify analytics room.</h2>
+        <p id="enter-greeting" class="subtle-text">Checking Spotify session...</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="/app.html">Open Analytics</a>
+          <a class="btn btn-secondary" href="/api/logout">Logout</a>
+        </div>
       </section>
-    </div>
+
+      <section id="enter-snapshot" class="panel" aria-labelledby="enter-snapshot-heading">
+        <div class="panel-head">
+          <div>
+            <p class="kicker">Quick Snapshot</p>
+            <h2 id="enter-snapshot-heading">Latest profile highlights</h2>
+          </div>
+          <button id="enter-reload" class="btn btn-ghost btn-small" type="button">Reload</button>
+        </div>
+
+        <div class="snapshot-grid">
+          <article class="snapshot-card">
+            <span class="snapshot-label">Top Track</span>
+            <strong id="enter-top-track">Loading...</strong>
+            <p id="enter-top-track-meta" class="subtle-text"></p>
+          </article>
+          <article class="snapshot-card">
+            <span class="snapshot-label">Top Artist</span>
+            <strong id="enter-top-artist">Loading...</strong>
+            <p id="enter-top-artist-meta" class="subtle-text"></p>
+          </article>
+          <article class="snapshot-card">
+            <span class="snapshot-label">Recently Played</span>
+            <strong id="enter-recent-track">Loading...</strong>
+            <p id="enter-recent-track-meta" class="subtle-text"></p>
+          </article>
+        </div>
+      </section>
+    </main>
   </body>
 </html>
