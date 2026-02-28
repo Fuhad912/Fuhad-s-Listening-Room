@@ -3,8 +3,8 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#3b3c36" />
-    <meta name="description" content="Fuhad Music Room is a private Spotify analytics room." />
+    <meta name="theme-color" content="#5E3B8C" />
+    <meta name="description" content="Welcome page for Fuhad Music Room." />
     <title>Fuhad Music Room</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -13,7 +13,6 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="/styles.css" />
-    <script src="/js/nav.js" defer></script>
   </head>
   <body class="landing-page">
     <div class="cosmos-bg" aria-hidden="true">
@@ -24,163 +23,16 @@
     </div>
 
     <main class="site-shell">
-      <header class="topbar">
-        <div class="brand-block">
-          <p class="kicker">Spotify + Analytics</p>
-          <h1>Fuhad Music Room</h1>
-        </div>
-        <div class="topbar-actions">
-          <a class="btn btn-primary" href="/api/login">Enter Room</a>
-          <a class="btn btn-secondary" href="/app.html">Open Analytics</a>
-        </div>
-      </header>
-
       <section class="panel hero-panel" aria-labelledby="home-hero-heading">
-        <p class="kicker">Private Listening Workspace</p>
-        <h2 id="home-hero-heading">Understand your Spotify listening with one clean dashboard.</h2>
-        <p class="lede">
-          This project is now focused on analytics. Connect Spotify, choose a time range, and view
-          the listening patterns that actually matter.
-        </p>
+        <p class="kicker">Fuhad Music Room</p>
+        <h2 id="home-hero-heading">Welcome Back Fuhad</h2>
+        <p class="lede">Choose where you want to go right now.</p>
 
         <div id="landing-error" class="banner banner-error hidden" role="alert"></div>
 
         <div class="hero-actions">
-          <a class="btn btn-primary" href="/api/login">Connect Spotify</a>
-          <a class="btn btn-secondary" href="/enter.html">Go to Enter Page</a>
-        </div>
-      </section>
-
-      <section id="home-features" class="panel" aria-labelledby="home-features-heading">
-        <div class="panel-head">
-          <div>
-            <p class="kicker">Core Features</p>
-            <h2 id="home-features-heading">What this website does</h2>
-          </div>
-        </div>
-
-        <div class="feature-grid">
-          <article class="feature-card">
-            <h3>Top Track Analytics</h3>
-            <p>See popularity patterns across your top tracks by time range.</p>
-          </article>
-          <article class="feature-card">
-            <h3>Artist + Genre Trends</h3>
-            <p>Understand which artists and genres dominate your listening profile.</p>
-          </article>
-          <article class="feature-card">
-            <h3>Recent Playback Rhythm</h3>
-            <p>Track when you actually listen using recent-played hour distributions.</p>
-          </article>
-        </div>
-      </section>
-
-      <section id="home-cta" class="panel cta-panel" aria-labelledby="home-cta-heading">
-        <h2 id="home-cta-heading">Ready to view your analytics?</h2>
-        <p class="subtle-text">Start with Spotify login, then open the analytics dashboard.</p>
-        <div class="hero-actions">
-          <a class="btn btn-primary" href="/api/login">Enter Room</a>
-          <a class="btn btn-secondary" href="/app.html">Open Analytics</a>
-        </div>
-      </section>
-    </main>
-
-    <script>
-      (function () {
-        const params = new URLSearchParams(window.location.search);
-        const rawError = params.get("error");
-        if (!rawError) return;
-        const banner = document.getElementById("landing-error");
-        if (!banner) return;
-        banner.textContent = rawError;
-        banner.classList.remove("hidden");
-      })();
-    </script>
-  </body>
-</html>
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#3b3c36" />
-    <meta name="description" content="Fuhad Music Room is a private Spotify analytics room." />
-    <title>Fuhad Music Room</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="/styles.css" />
-    <script src="/js/nav.js" defer></script>
-  </head>
-  <body class="landing-page">
-    <div class="cosmos-bg" aria-hidden="true">
-      <span class="orb orb-a"></span>
-      <span class="orb orb-b"></span>
-      <span class="orb orb-c"></span>
-      <span class="stars"></span>
-    </div>
-
-    <main class="site-shell">
-      <header class="topbar">
-        <div class="brand-block">
-          <p class="kicker">Spotify + Analytics</p>
-          <h1>Fuhad Music Room</h1>
-        </div>
-        <div class="topbar-actions">
-          <a class="btn btn-primary" href="/api/login">Enter Room</a>
-          <a class="btn btn-secondary" href="/app.html">Open Analytics</a>
-        </div>
-      </header>
-
-      <section class="panel hero-panel" aria-labelledby="home-hero-heading">
-        <p class="kicker">Private Listening Workspace</p>
-        <h2 id="home-hero-heading">Understand your Spotify listening with one clean dashboard.</h2>
-        <p class="lede">
-          This project is now focused on analytics. Connect Spotify, choose a time range, and view
-          the listening patterns that actually matter.
-        </p>
-
-        <div id="landing-error" class="banner banner-error hidden" role="alert"></div>
-
-        <div class="hero-actions">
-          <a class="btn btn-primary" href="/api/login">Connect Spotify</a>
-          <a class="btn btn-secondary" href="/enter.html">Go to Enter Page</a>
-        </div>
-      </section>
-
-      <section id="home-features" class="panel" aria-labelledby="home-features-heading">
-        <div class="panel-head">
-          <div>
-            <p class="kicker">Core Features</p>
-            <h2 id="home-features-heading">What this website does</h2>
-          </div>
-        </div>
-
-        <div class="feature-grid">
-          <article class="feature-card">
-            <h3>Top Track Analytics</h3>
-            <p>See popularity patterns across your top tracks by time range.</p>
-          </article>
-          <article class="feature-card">
-            <h3>Artist + Genre Trends</h3>
-            <p>Understand which artists and genres dominate your listening profile.</p>
-          </article>
-          <article class="feature-card">
-            <h3>Recent Playback Rhythm</h3>
-            <p>Track when you actually listen using recent-played hour distributions.</p>
-          </article>
-        </div>
-      </section>
-
-      <section id="home-cta" class="panel cta-panel" aria-labelledby="home-cta-heading">
-        <h2 id="home-cta-heading">Ready to view your analytics?</h2>
-        <p class="subtle-text">Start with Spotify login, then open the analytics dashboard.</p>
-        <div class="hero-actions">
-          <a class="btn btn-primary" href="/api/login">Enter Room</a>
-          <a class="btn btn-secondary" href="/app.html">Open Analytics</a>
+          <a class="btn btn-primary" href="/enter.html">Open Room Page</a>
+          <a class="btn btn-secondary" href="/app.html">Open Analytics Page</a>
         </div>
       </section>
     </main>
