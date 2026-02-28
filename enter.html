@@ -3,9 +3,9 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#3b3c36" />
-    <meta name="description" content="Enter page for Fuhad Music Room." />
-    <title>Enter | Fuhad Music Room</title>
+    <meta name="theme-color" content="#5E3B8C" />
+    <meta name="description" content="Room page for Fuhad Music Room." />
+    <title>Room | Fuhad Music Room</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -16,7 +16,7 @@
     <script src="/js/nav.js" defer></script>
     <script src="/js/enter.js" defer></script>
   </head>
-  <body class="enter-page">
+  <body class="enter-page room-page">
     <div class="cosmos-bg" aria-hidden="true">
       <span class="orb orb-a"></span>
       <span class="orb orb-b"></span>
@@ -27,51 +27,64 @@
     <main class="dashboard-shell">
       <header class="topbar">
         <div class="brand-block">
-          <p class="kicker">Private Entry</p>
+          <p class="kicker">Room</p>
           <h1>Fuhad Music Room</h1>
         </div>
         <div class="topbar-actions">
           <a class="btn btn-secondary" href="/index.html">Home</a>
+          <a class="btn btn-secondary" href="/app.html">Analytics</a>
           <a class="btn btn-primary" href="/api/logout">Logout</a>
         </div>
       </header>
 
-      <section class="panel enter-hero" aria-labelledby="enter-heading">
-        <p class="kicker">Session</p>
-        <h2 id="enter-heading">Preparing your Spotify analytics room.</h2>
-        <p id="enter-greeting" class="subtle-text">Checking Spotify session...</p>
-        <div class="hero-actions">
-          <a class="btn btn-primary" href="/app.html">Open Analytics</a>
-          <a class="btn btn-secondary" href="/api/logout">Logout</a>
+      <section class="panel tabs-panel room-controls" aria-label="Room range selector">
+        <div class="tabs" role="tablist" aria-label="Room listening time range">
+          <button class="tab is-active" type="button" role="tab" aria-selected="true" data-range="short_term" data-room-range>
+            Week
+          </button>
+          <button class="tab" type="button" role="tab" aria-selected="false" data-range="medium_term" data-room-range>
+            Month
+          </button>
+          <button class="tab" type="button" role="tab" aria-selected="false" data-range="long_term" data-room-range>
+            All Time
+          </button>
         </div>
+        <div class="room-controls-actions">
+          <button id="room-reload" class="btn btn-ghost btn-small" type="button">Reload</button>
+        </div>
+        <div id="room-status" class="subtle-text">Checking Spotify session...</div>
       </section>
 
-      <section id="enter-snapshot" class="panel" aria-labelledby="enter-snapshot-heading">
-        <div class="panel-head">
-          <div>
-            <p class="kicker">Quick Snapshot</p>
-            <h2 id="enter-snapshot-heading">Latest profile highlights</h2>
+      <section class="dashboard-grid room-grid">
+        <section class="panel" aria-labelledby="room-top-tracks-heading">
+          <div class="panel-head">
+            <div>
+              <p class="kicker">Top Tracks</p>
+              <h2 id="room-top-tracks-heading">Your Most Played Tracks</h2>
+            </div>
           </div>
-          <button id="enter-reload" class="btn btn-ghost btn-small" type="button">Reload</button>
-        </div>
+          <ol id="room-top-tracks" class="room-list"></ol>
+        </section>
 
-        <div class="snapshot-grid">
-          <article class="snapshot-card">
-            <span class="snapshot-label">Top Track</span>
-            <strong id="enter-top-track">Loading...</strong>
-            <p id="enter-top-track-meta" class="subtle-text"></p>
-          </article>
-          <article class="snapshot-card">
-            <span class="snapshot-label">Top Artist</span>
-            <strong id="enter-top-artist">Loading...</strong>
-            <p id="enter-top-artist-meta" class="subtle-text"></p>
-          </article>
-          <article class="snapshot-card">
-            <span class="snapshot-label">Recently Played</span>
-            <strong id="enter-recent-track">Loading...</strong>
-            <p id="enter-recent-track-meta" class="subtle-text"></p>
-          </article>
-        </div>
+        <section class="panel" aria-labelledby="room-top-artists-heading">
+          <div class="panel-head">
+            <div>
+              <p class="kicker">Top Artists</p>
+              <h2 id="room-top-artists-heading">Artists In Rotation</h2>
+            </div>
+          </div>
+          <ol id="room-top-artists" class="room-list"></ol>
+        </section>
+
+        <section class="panel" aria-labelledby="room-top-albums-heading">
+          <div class="panel-head">
+            <div>
+              <p class="kicker">Top Albums</p>
+              <h2 id="room-top-albums-heading">Albums You Actually Listen To</h2>
+            </div>
+          </div>
+          <ol id="room-top-albums" class="room-list"></ol>
+        </section>
       </section>
     </main>
   </body>
