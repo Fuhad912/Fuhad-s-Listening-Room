@@ -177,7 +177,6 @@
                 <small>${artists}</small>
               </div>
             </div>
-            <span class="room-item-rank">${Number(track && track.popularity) || 0}</span>
           </li>
         `;
       })
@@ -212,7 +211,6 @@
                 <small>${genres}</small>
               </div>
             </div>
-            <span class="room-item-rank">${Number(artist && artist.popularity) || 0}</span>
           </li>
         `;
       })
@@ -241,7 +239,6 @@
                 <small>${artists}</small>
               </div>
             </div>
-            <span class="room-item-rank">${album.count}x</span>
           </li>
         `;
       })
