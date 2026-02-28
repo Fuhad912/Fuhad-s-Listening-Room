@@ -475,7 +475,7 @@ img {
   padding: 10px 12px;
   display: flex;
   gap: var(--s-2);
-  justify-content: space-between;
+  justify-content: flex-start;
   align-items: center;
 }
 
